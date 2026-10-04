@@ -28,11 +28,13 @@ function getStreamPlaybackUrl(streamUrl, referer = 'https://embed.filmu.in/') {
     try {
         const parsed = new URL(streamUrl, window.location.href);
         const currentOrigin = window.location.origin;
-        const isProxyUrl = parsed.pathname === '/proxy/stream' || parsed.pathname === '/proxy/any';
+        const isProxyUrl = parsed.pathname === '/proxy/stream' ||
+                   parsed.pathname === '/proxy/any' ||
+                   parsed.pathname === '/api/proxy/any';
         const isExternal = parsed.origin !== currentOrigin;
                 const origin = new URL(referer).origin;
         return isExternal && !isProxyUrl
-            ? `/proxy/any?url=${encodeURIComponent(parsed.href)}` +
+            ? `/api/proxy/any?url=${encodeURIComponent(parsed.href)}` +
                             `&referer=${encodeURIComponent(referer)}` +
                             `&origin=${encodeURIComponent(origin)}`
             : streamUrl;

@@ -261,7 +261,7 @@ function updateEpisodePanelButtonVisibility() {
     episodePanelButton.classList.toggle('hidden', !isTv);
 }
 
-window.onload = () => {
+function startPlayer() {
     // Seed playing state from URL so episode panel works correctly on first open
     const tvMatch = window.location.pathname.match(/\/tv\/(\d+)\/S(\d+)\/E(\d+)/i)
                  || window.location.pathname.match(/\/tv\/(\d+)\/(\d+)\/(\d+)/);
@@ -272,5 +272,8 @@ window.onload = () => {
         _epCurrentSeason  = _epPlayingSeason;
     }
     setupUIControls(); resolveAndPlay();
-};
+}
+
+if (document.readyState === 'complete') startPlayer();
+else window.addEventListener('load', startPlayer, { once: true });
 

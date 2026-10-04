@@ -8,7 +8,7 @@ function sendJson(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
-export default async function tmdb(req, res) {
+module.exports = async function tmdb(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
   if (req.method !== 'GET') {
@@ -49,4 +49,4 @@ export default async function tmdb(req, res) {
   } catch (error) {
     sendJson(res, 502, { error: `TMDB request failed: ${error.message}` });
   }
-}
+};
