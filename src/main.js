@@ -24,15 +24,3 @@ for (const file of playerScripts) {
 		document.head.appendChild(script);
 	});
 }
-
-const tvMatch = window.location.pathname.match(/\/tv\/(\d+)\/S(\d+)\/E(\d+)/i)
-			 || window.location.pathname.match(/\/tv\/(\d+)\/(\d+)\/(\d+)/);
-if (tvMatch) {
-	_epSeriesId = tvMatch[1];
-	_epPlayingSeason = Number(tvMatch[2]);
-	_epPlayingEpisode = Number(tvMatch[3]);
-	_epCurrentSeason = _epPlayingSeason;
-}
-
-setupUIControls();
-resolveAndPlay();
